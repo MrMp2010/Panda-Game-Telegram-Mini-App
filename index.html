@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda App Interface with New Features</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <video autoplay loop muted>
+            <source src="static/jungle.webm" type="video/webm">
+        </video>
+          <div class="header">
+            <div class="header-item">مجموع سکه ها: ۷۰۰۹۱۸</div>
+            <div class="header-item">نام کاربر: @user</div>
+        </div>
+        <div class="panda-image"></div>
+        <div class="buttons">
+            <button class="button" id="challengesButton">چالش ها</button>
+            <button class="button" id="gamesButton">بازی ها</button>
+            <button class="button" id="coinRateButton">نرخ سکه (امروز)</button>
+            <button class="button" id="marketplaceButton">تجارتخانه</button>
+            <button class="button" id="invitesButton">دعوت ها</button>
+        </div>
+    </div>
+
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>بازی حدس عدد</h2>
+            <p>یک عدد بین 1 تا 100 حدس بزنید:</p>
+            <input type="number" id="guessInput" min="1" max="100">
+            <button onclick="checkGuess()">حدس بزن</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <div id="challengesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>چالش ها</h2>
+            <p>این بخش در حال ساخت است</p>
+        </div>
+    </div>
+
+    <div id="coinRateModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>نرخ سکه</h2>
+            <p>هزار سکه = ۱۰ تومان</p>
+            <p>دو هزار سکه = ۲۵ تومان</p>
+            <p>پنج هزار سکه = ۵۰ تومان</p>
+            <p>ده هزار سکه = ۱۲۰ تومان</p>
+            <p>برای بقیه نرخ ها به پشتیبانی مراجعه کنید</p>
+        </div>
+    </div>
+
+    <div id="marketplaceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>تجارتخانه</h2>
+            <p>آیا میخواهید به تجارتخانه ملحق شوید؟</p>
+            <button id="joinMarketplace">بله</button>
+            <button id="cancelMarketplace">خیر</button>
+        </div>
+    </div>
+
+    <div id="invitePage">
+        <h2>دعوت ها</h2>
+        <p>با دعوت هر فرد ۱۲۰ سکه رایگان دریافت کنید</p>
+        <p>تعداد دعوت ها: <span id="inviteCount">0</span></p>
+        <button id="inviteLink">کپی لینک دعوت</button>
+    </div>
+
+    <script>
+        const gameModal = document.getElementById("gameModal");
+        const challengesModal = document.getElementById("challengesModal");
+        const coinRateModal = document.getElementById("coinRateModal");
+        const marketplaceModal = document.getElementById("marketplaceModal");
+        const invitePage = document.getElementById("invitePage");
+        const container = document.querySelector(".container");
+
+        const gamesButton = document.getElementById("gamesButton");
+        const challengesButton = document.getElementById("challengesButton");
+        const coinRateButton = document.getElementById("coinRateButton");
+        const marketplaceButton = document.getElementById("marketplaceButton");
+        const invitesButton = document.getElementById("invitesButton");
+
+        const closeButtons = document.getElementsByClassName("close");
+        const joinMarketplaceButton = document.getElementById("joinMarketplace");
+        const cancelMarketplaceButton = document.getElementById("cancelMarketplace");
+        const inviteLinkButton = document.getElementById("inviteLink");
+
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function openModal(modal) {
+            modal.style.display = "block";
+        }
+
+        function closeModal(modal) {
+            modal.style.display = "none";
+        }
+
+        function closeAllModals() {
+            gameModal.style.display = "none";
+            challengesModal.style.display = "none";
+            coinRateModal.style.display = "none";
+            marketplaceModal.style.display = "none";
+            invitePage.style.display = "none";
+            container.style.display = "block";
+        }
+
+        gamesButton.onclick = function() {
+            openModal(gameModal);
+        }
+
+        challengesButton.onclick = function() {
+            openModal(challengesModal);
+        }
+
+        coinRateButton.onclick = function() {
+            openModal(coinRateModal);
+        }
+
+        marketplaceButton.onclick = function() {
+            openModal(marketplaceModal);
+        }
+
+        invitesButton.onclick = function() {
+            container.style.display = "none";
+            invitePage.style.display = "block";
+        }
+
+        for (let closeButton of closeButtons) {
+            closeButton.onclick = function() {
+                closeAllModals();
+            }
+        }
+
+        joinMarketplaceButton.onclick = function() {
+            // Replace this with the actual marketplace link
+            window.location.href = "https://example.com/marketplace";
+        }
+
+        cancelMarketplaceButton.onclick = function() {
+            closeModal(marketplaceModal);
+        }
+
+        inviteLinkButton.onclick = function() {
+            // Replace this with the actual invite link
+            const inviteLink = "https://example.com/invite";
+            navigator.clipboard.writeText(inviteLink).then(function() {
+                alert("لینک دعوت کپی شد!");
+            }, function(err) {
+                console.error('خطا در کپی کردن لینک: ', err);
+            });
+        }
+
+        window.onclick = function(event) {
+            if (event.target == gameModal || event.target == challengesModal || 
+                event.target == coinRateModal || event.target == marketplaceModal) {
+                closeAllModals();
+            }
+        }
+
+        function checkGuess() {
+            const guess = document.getElementById("guessInput").value;
+            const result = document.getElementById("result");
+            attempts++;
+
+            if (guess == randomNumber) {
+                result.textContent = `آفرین! شما در ${attempts} تلاش عدد را حدس زدید.`;
+                randomNumber = Math.floor(Math.random() * 100) + 1;
+                attempts = 0;
+            } else if (guess < randomNumber) {
+                result.textContent = "کم است! یک عدد بزرگتر را امتحان کنید.";
+            } else {
+                result.textContent = "زیاد است! یک عدد کوچکتر را امتحان کنید.";
+            }
+        }
+    </script>
+</body>
+</html>

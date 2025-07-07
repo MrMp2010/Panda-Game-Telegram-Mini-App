@@ -1,0 +1,152 @@
+ @font-face {
+    font-family: BYekan;
+    src: url('../fonts/BYekan+.ttf') format('ttf');
+ }
+ body {
+     font-family: IRyekan, BYekan, Arial, sans-serif;
+     font-size: 16px;
+     background-color: #4a4a4a;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     background-image: url('https://v0.dev/placeholder.svg?height=300&width=300');
+     background-size: cover;
+     background-position: center;
+     background-attachment: fixed;
+ }
+
+ .container {
+     position: relative;
+     width: 500px;
+     height: 900px;
+     background-color: rgba(74, 74, 74, 0.1);
+     border-radius: 20px;
+     overflow: hidden;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ }
+
+ video {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+ }
+
+ .header {
+     display: flex;
+     justify-content: space-between;
+     background-color: #767676;
+     height: 7%;
+     padding: 5%;
+        font-size: 18px;
+            /* Increase font size for header */
+ }
+
+ .header-item {
+     background-color: #ffc107;
+     border-radius: 15px;
+     padding: 10px;
+     width: 45%;
+     text-align: center;
+     font-weight: bold;
+        font-size: 16px;
+            /* Increase font size for header items */
+ }
+
+ .panda-image {
+     width: 100%;
+     height: 50%;
+     margin-top: 10%;
+     margin-bottom: 1%;
+     background-image: url('static/cool-panda-kid.png');
+     background-size: cover;
+     background-position: center;
+ }
+
+ .buttons {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     height: 25%;
+     padding: 5%;
+ }
+
+ .button {
+     font: IRyekan;
+     background-color: #4caf50;
+     color: white;
+     border: none;
+     padding: 10px;
+     margin: 5px;
+     border-radius: 10px;
+     width: 45%;
+     text-align: center;
+     font-weight: bold;
+     cursor: pointer;
+        font-size: 25px;
+            /* Increase font size for buttons */
+ }
+
+ .modal {
+     display: none;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.4);
+ }
+
+ .modal-content {
+     background-color: #fefefe;
+     margin: 15% auto;
+     padding: 20px;
+     border: 1px solid #888;
+     width: 80%;
+     max-width: 300px;
+     border-radius: 15px;
+     text-align: center;
+        font-size: 16px;
+            /* Increase font size for buttons */
+ }
+
+ .close {
+     color: #aaa;
+     float: left;
+     font-size: 28px;
+     font-weight: bold;
+     cursor: pointer;
+ }
+
+ .close:hover,
+ .close:focus {
+     color: black;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+ #invitePage {
+     display: none;
+     background-color: rgba(74, 74, 74, 0.9);
+     padding: 20px;
+     border-radius: 20px;
+     text-align: center;
+     color: white;
+ }
+
+ #inviteLink {
+     background-color: #4caf50;
+     color: white;
+     border: none;
+     padding: 10px;
+     margin: 10px 0;
+     border-radius: 10px;
+     cursor: pointer;
+ }
