@@ -1,5 +1,5 @@
 # Panda-Game-Telegram-Mini-App
-# Panda Game Telegram Mini App
+
 
 ## Overview
 
